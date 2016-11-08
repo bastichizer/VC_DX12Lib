@@ -26,12 +26,14 @@ public:
 	};
 
 	void Initialize();
+	void SetGraphicsPiplineState();
 
 private:
 	ID3D12Resource*						m_pVertexBuffer;
 	D3D12_VERSIONED_ROOT_SIGNATURE_DESC m_vertexBufferView;
 
 	VertexFormat m_vertexFormat;
+	D3D12_INPUT_ELEMENT_DESC m_inputElementDesc[9];
 
 	XMFLOAT3*	m_pPosition;
 	XMFLOAT4*	m_pColour;

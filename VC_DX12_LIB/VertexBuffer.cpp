@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "VertexBuffer.h"
+#include "RenderManager.h"
 
 VertexBuffer::VertexBuffer() :
 	m_pVertexBuffer(nullptr),
@@ -158,6 +159,21 @@ void VertexBuffer::Initialize()
 		++elementIndex;
 	}
 
+	for (int i = 0; i < 9; ++i)
+	{
+		m_inputElementDesc[i] = tempDescs[i];
+	}
+}
+
+void VertexBuffer::SetGraphicsPiplineState()
+{
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC plStateDesc;
+	plStateDesc.InputLayout = { m_inputElementDesc, _countof(m_inputElementDesc) };
+	plStateDesc.pRootSignature = RenderManager::Get().GetCurrentMaterial()->GetShader()->GetRootSignature();
+	ID3DBlob* pVertexShader = RenderManager::Get().GetCurrentMaterial()->GetShader()->GetVertexShader();
+	ID3DBlob* pPixelShader = RenderManager::Get().GetCurrentMaterial()->GetShader()->GetPixelShader();
+	plStateDesc.VS = { reinterpret_cast<UINT8*>(pVertexShader->GetBufferPointer()), pVertexShader->GetBufferSize() };
+	plStateDesc.PS = { reinterpret_cast<UINT8*>(pPixelShader->GetBufferPointer()), pPixelShader->GetBufferSize() };
 
 }
 

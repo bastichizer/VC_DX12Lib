@@ -7,6 +7,7 @@
 #include "d3dx12.h"
 #include <dxgi1_4.h>
 #include "RenderTarget.h"
+#include "Material.h"
 
 class RenderManager
 {
@@ -21,6 +22,9 @@ public:
 	void Render();
 
 	ID3D12Device* GetD3D12Device();
+
+	void SetCurrentMaterial(Material* material) { m_pCurrentMaterial = material; }
+	Material* GetCurrentMaterial() { return m_pCurrentMaterial; }
 
 private:
 
@@ -51,6 +55,7 @@ private:
 	UINT						m_screenHeight;
 
 	RenderTarget*				m_pFrameBuffers[s_frameCount];
+	Material*					m_pCurrentMaterial;
 
 };
 

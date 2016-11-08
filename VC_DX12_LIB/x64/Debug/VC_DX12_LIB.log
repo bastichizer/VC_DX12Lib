@@ -1,2 +1,8 @@
 ﻿  VertexBuffer.cpp
-  VC_DX12_LIB.vcxproj -> d:\users\duncan\documents\visual studio 2015\Projects\VC_DX12_LIB\x64\Debug\VC_DX12_LIB.exe
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Shader.cpp
+  RenderManager.cpp
+  Material.cpp
+  AppManager.cpp
+  VC_DX12_LIB.vcxproj -> E:\GitHub\VC_DX12Lib\x64\Debug\VC_DX12_LIB.exe

@@ -14,6 +14,9 @@ public:
 	~Shader();
 
 	void LoadShader(char* filename);
+	ID3D12RootSignature* GetRootSignature() { return m_pRootSignature; }
+	ID3DBlob* GetVertexShader() { return m_pVertexShader; }
+	ID3DBlob* GetPixelShader() { return m_pPixelShader; }
 
 private:
 	ID3D12RootSignature*		m_pRootSignature;

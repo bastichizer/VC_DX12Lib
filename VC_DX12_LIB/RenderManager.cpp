@@ -11,7 +11,8 @@ RenderManager::RenderManager() :
 	m_pFence(nullptr),
 	m_pPipelineState(nullptr),
 	m_pRtvHeap(nullptr),
-	m_pSwapChain(nullptr)
+	m_pSwapChain(nullptr),
+	m_pCurrentRenderObject(nullptr)
 {
 
 }
@@ -192,5 +193,19 @@ void RenderManager::Render()
 ID3D12Device* RenderManager::GetD3D12Device()
 {
 	return m_pDevice;
+}
+
+void RenderManager::SetGraphicsPiplineState()
+{
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC plStateDesc;
+	D3D12_INPUT_ELEMENT_DESC* inputElementDesc;
+	inputElementDesc = m_pCurrentRenderObject->GetVertexBuffer()->GetInputElementDesc();
+	plStateDesc.InputLayout = { inputElementDesc, 9 };
+	plStateDesc.pRootSignature = GetCurrentMaterial()->GetShader()->GetRootSignature();
+	ID3DBlob* pVertexShader = GetCurrentMaterial()->GetShader()->GetVertexShader();
+	ID3DBlob* pPixelShader = GetCurrentMaterial()->GetShader()->GetPixelShader();
+	plStateDesc.VS = { reinterpret_cast<UINT8*>(pVertexShader->GetBufferPointer()), pVertexShader->GetBufferSize() };
+	plStateDesc.PS = { reinterpret_cast<UINT8*>(pPixelShader->GetBufferPointer()), pPixelShader->GetBufferSize() };
+
 }
 

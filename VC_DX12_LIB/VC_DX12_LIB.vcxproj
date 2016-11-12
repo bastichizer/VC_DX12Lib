@@ -146,6 +146,7 @@
     <ClInclude Include="d3dx12.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="RenderObject.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="RenderTargetColour.h" />
     <ClInclude Include="RenderTargetDepth.h" />

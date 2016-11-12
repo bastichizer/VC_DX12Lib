@@ -26,7 +26,7 @@ public:
 	};
 
 	void Initialize();
-	void SetGraphicsPiplineState();
+	D3D12_INPUT_ELEMENT_DESC* GetInputElementDesc() { return m_inputElementDesc; }
 
 private:
 	ID3D12Resource*						m_pVertexBuffer;

@@ -8,6 +8,7 @@
 #include <dxgi1_4.h>
 #include "RenderTarget.h"
 #include "Material.h"
+#include "RenderObject.h"
 
 class RenderManager
 {
@@ -25,6 +26,7 @@ public:
 
 	void SetCurrentMaterial(Material* material) { m_pCurrentMaterial = material; }
 	Material* GetCurrentMaterial() { return m_pCurrentMaterial; }
+	void SetGraphicsPiplineState();
 
 private:
 
@@ -57,6 +59,9 @@ private:
 	RenderTarget*				m_pFrameBuffers[s_frameCount];
 	Material*					m_pCurrentMaterial;
 
+	// Temporary render object variable here.
+	// TODO: Create render object lists based on materials
+	RenderObject*				m_pCurrentRenderObject;
 };
 
 #endif //RENDERMANAGER_H
